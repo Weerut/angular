@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var parse = require('./parse');
 
 function initWatchVal() { }
 
@@ -60,7 +61,14 @@ Scope.prototype.$new = function(isolated, parent) {
 };
 
 Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
-	var self = this;
+  var self = this;
+
+  watchFn = parse(watchFn);
+
+  if (watchFn.$$watchDelegate) {
+    return watchFn.$$watchDelegate(self, listenerFn, valueEq, watchFn);
+  }
+
   var watcher = {
     watchFn: watchFn,
     listenerFn: listenerFn || function() { },
@@ -134,6 +142,8 @@ Scope.prototype.$watchCollection = function(watchFn, listenerFn) {
   var trackVeryOldValue = (listenerFn.length > 1);
   var changeCount = 0;
   var firstRun = true;
+
+	watchFn = parse(watchFn);
 
   var internalWatchFn = function(scope) {
     var newLength;
@@ -299,7 +309,7 @@ Scope.prototype.$$everyScope = function(fn) {
 };
 
 Scope.prototype.$eval = function(expr, locals) {
-  return expr(this, locals);
+  return parse(expr)(this, locals);
 };
 
 Scope.prototype.$apply = function(expr) {
