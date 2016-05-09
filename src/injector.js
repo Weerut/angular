@@ -6,9 +6,10 @@ var FN_ARGS = /^function\s*[^\(]*\(\s*([^\)]*)\)/m;
 var FN_ARG = /^\s*(_?)(\S+?)\1\s*$/;
 var STRIP_COMMENTS = /(\/\/.*$)|(\/\*.*?\*\/)/mg;
 
-function createInjector(modulesToLoad) {
+function createInjector(modulesToLoad, strictDi) {
 	var cache = {};
 	var loadedModules = {};
+	strictDi = (strictDi === true);
 	var $provide = {
 		constant: function(key, value) {
 			if (key === 'hasOwnProperty') {
@@ -19,13 +20,16 @@ function createInjector(modulesToLoad) {
 	};
 
 	function invoke(fn, self, locals) {
-		var args = _.map(fn.$inject, function(token) {
+		var args = _.map(annotate(fn), function(token) {
 			if (_.isString(token)) {
 				return locals && locals.hasOwnProperty(token) ? locals[token] : cache[token];
 			} else {
 				throw 'Incorrect injection token! Expected a string, got ' + token;
 			}
 		});
+		if (_.isArray(fn)) {
+			fn = _.last(fn);
+		}
 		return fn.apply(self, args);
 	}
 
@@ -37,12 +41,22 @@ function createInjector(modulesToLoad) {
 		} else if (!fn.length) {
 			return [];
 		} else {
+			if (strictDi) {
+				throw 'fn is not using explicit annotation and ' + 'cannot be invoked in strict mode';
+			}
 			var source = fn.toString().replace(STRIP_COMMENTS, '');
 			var argDeclaration = fn.toString().match(FN_ARGS);
 			return _.map(argDeclaration[1].split(','), function(argName) {
 				return argName.match(FN_ARG)[2];
 			});
 		}
+	}
+
+	function instantiate(Type,locals) {
+		var UnwrappedType = _.isArray(Type) ? _.last(Type) : Type;
+		var instance = Object.create(UnwrappedType.prototype);
+		invoke(Type, instance,locals);
+		return instance;
 	}
 
 	_.forEach(modulesToLoad, function loadModule(moduleName) {
@@ -65,7 +79,8 @@ function createInjector(modulesToLoad) {
 			return cache[key];
 		},
 		annotate: annotate,
-		invoke: invoke
+		invoke: invoke,
+		instantiate: instantiate
 	};
 }
 
