@@ -9,19 +9,21 @@ var INSTANTIATING = {};
 
 function createInjector(modulesToLoad, strictDi) {
 	var providerCache = {};
-	var providerInjector = createInternalInjector(providerCache, function() {
-		throw 'Unknown provider: ' + path.join(' <- ');
-	});
+	var providerInjector = providerCache.$injector =
+		createInternalInjector(providerCache, function() {
+			throw 'Unknown provider: ' + path.join(' <- ');
+		});
 	var instanceCache = {};
-	var instanceInjector = createInternalInjector(instanceCache, function(name) {
-		var provider = providerInjector.get(name + 'Provider');
-		return instanceInjector.invoke(provider.$get, provider);
-	});
+	var instanceInjector = instanceCache.$injector =
+		createInternalInjector(instanceCache, function(name) {
+			var provider = providerInjector.get(name + 'Provider');
+			return instanceInjector.invoke(provider.$get, provider);
+		});
 	var loadedModules = {};
 	var path = [];
 	strictDi = (strictDi === true);
 
-	var $provide = {
+	providerCache.$provide = {
 		constant: function(key, value) {
 			if (key === 'hasOwnProperty') {
 				throw 'hasOwnProperty is not a valid constant name!';
@@ -119,17 +121,32 @@ function createInjector(modulesToLoad, strictDi) {
 		};
 	}
 
-	_.forEach(modulesToLoad, function loadModule(moduleName) {
-		if (!loadedModules.hasOwnProperty(moduleName)) {
-			loadedModules[moduleName] = true;
-			var module = window.angular.module(moduleName);
-			_.forEach(module.requires, loadModule);
-			_.forEach(module._invokeQueue, function(invokeArgs) {
-				var method = invokeArgs[0];
-				var args = invokeArgs[1];
-				$provide[method].apply($provide, args);
-			});
+	function runInvokeQueue(queue) {
+		_.forEach(queue, function(invokeArgs) {
+			var service = providerInjector.get(invokeArgs[0]);
+			var method = invokeArgs[1];
+			var args = invokeArgs[2];
+			service[method].apply(service, args);
+		});
+	}
+
+	var runBlocks = [];
+	_.forEach(modulesToLoad, function loadModule(module) {
+		if (_.isString(module)) {
+			if (!loadedModules.hasOwnProperty(module)) {
+				loadedModules[module] = true;
+				module = window.angular.module(module);
+				_.forEach(module.requires, loadModule);
+				runInvokeQueue(module._invokeQueue);
+				runInvokeQueue(module._configBlocks);
+				runBlocks = runBlocks.concat(module._runBlocks);
+			}
+		} else if (_.isFunction(module) || _.isArray(module)) {
+			runBlocks.push(providerInjector.invoke(module));
 		}
+	});
+	_.forEach(_.compact(runBlocks), function(runBlock) {
+		instanceInjector.invoke(runBlock);
 	});
 
 	return instanceInjector;
