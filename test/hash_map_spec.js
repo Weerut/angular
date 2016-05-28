@@ -1,5 +1,6 @@
-var _ = require('lodash'); 
+var _ = require('lodash');
 var hashKey = require('../src/hash_map').hashKey;
+var HashMap = require('../src/hash_map').HashMap;
 
 describe('hash', function() {
 	'use strict';
@@ -66,7 +67,7 @@ describe('hash', function() {
 				return 42;
 			};
 			expect(hashKey(fn1)).not.toEqual(hashKey(fn2));
-		})
+		});
 		it('stores the hash key in the $$hashKey attribute', function() {
 			var obj = {
 				a: 42
@@ -79,18 +80,43 @@ describe('hash', function() {
 				$$hashKey: 42
 			})).toEqual('object:42');
 		});
-		// it('supports a function $$hashKey', function() {
-		// 	expect(hashKey({
-		// 		$$hashKey: _.constant(42)
-		// 	})).toEqual('object:42');
-		// });
-		// it('calls the function $$hashKey as a method with the correct this', function() {
-		// 	expect(hashKey({
-		// 		myKey: 42,
-		// 		$$hashKey: function() {
-		// 			return this.myKey;
-		// 		}
-		// 	})).toEqual('object:42');
-		// });
+		it('supports a function $$hashKey', function() {
+			expect(hashKey({
+				$$hashKey: _.constant(42)
+			})).toEqual('object:42');
+		});
+		it('calls the function $$hashKey as a method with the correct this', function() {
+			expect(hashKey({
+				myKey: 42,
+				$$hashKey: function() {
+					return this.myKey;
+				}
+			})).toEqual('object:42');
+		});
+	});
+	describe('HashMap', function() {
+		it('supports put and get of primitives', function() {
+			var map = new HashMap();
+			map.put(42, 'fourty two');
+			expect(map.get(42)).toEqual('fourty two');
+		});
+		it('supports put and get of objects with hashKey semantics', function() {
+			var map = new HashMap();
+			var obj = {};
+			map.put(obj, 'my value');
+			expect(map.get(obj)).toEqual('my value');
+			expect(map.get({})).toBeUndefined();
+		});
+		it('supports remove', function() {
+			var map = new HashMap();
+			map.put(42, 'fourty two');
+			map.remove(42);
+			expect(map.get(42)).toBeUndefined();
+		});
+		it('returns value from remove', function() {
+			var map = new HashMap();
+			map.put(42, 'fourty two');
+			expect(map.remove(42)).toEqual('fourty two');
+		});
 	});
 });
