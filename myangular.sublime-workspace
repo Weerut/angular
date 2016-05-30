@@ -1,0 +1,715 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"hash",
+				"hashKey"
+			],
+			[
+				"confi",
+				"configFn"
+			],
+			[
+				"config",
+				"configFn"
+			],
+			[
+				"inv",
+				"invokeLater"
+			],
+			[
+				"ng-mouse",
+				"ng-mouseover	AngularJS"
+			],
+			[
+				"re",
+				"registerdFormat"
+			],
+			[
+				"regis",
+				"registerFormat"
+			],
+			[
+				"u",
+				"ul	Tag"
+			],
+			[
+				"but",
+				"button	Tag"
+			],
+			[
+				"get",
+				"getValue"
+			],
+			[
+				"o",
+				"ol	Tag"
+			],
+			[
+				"l",
+				"li	Tag"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"s",
+				"split"
+			],
+			[
+				"setToast",
+				"setToastTimer"
+			],
+			[
+				"insta",
+				"instance"
+			],
+			[
+				"inst",
+				"instantiate	(injector_spec.js)"
+			],
+			[
+				"anota",
+				"annotate"
+			],
+			[
+				"change",
+				"changeCount"
+			],
+			[
+				"old",
+				"oldValue"
+			],
+			[
+				"watch",
+				"watchFn"
+			],
+			[
+				"interna",
+				"internalListenerFn"
+			],
+			[
+				"inter",
+				"internalWatchFn"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"date",
+				"dateTimeObj"
+			],
+			[
+				"toastcon",
+				"toastcontent	(ektoast.css)"
+			],
+			[
+				"add",
+				"addDemoToast"
+			],
+			[
+				"the",
+				"theme"
+			],
+			[
+				"te",
+				"theme"
+			],
+			[
+				"mes",
+				"messenger"
+			],
+			[
+				"addtoas",
+				"addBetaToast"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"jet",
+				"jetInit"
+			],
+			[
+				"inde",
+				"indexOf	(History.html)"
+			],
+			[
+				"for",
+				"forEach	(UIMainController.js)"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"verti",
+				"vertical-align"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"appl",
+				"apply"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"border",
+				"border-style"
+			],
+			[
+				"home",
+				"homeCtrl"
+			],
+			[
+				"H",
+				"H1	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "myangular.sublime-project",
+			"settings":
+			{
+				"buffer_size": 138,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"jshint",
+				"JSHint"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"inst	",
+				"Package Control: Install Package"
+			],
+			[
+				"ins	",
+				"Package Control: Install Package"
+			],
+			[
+				"all",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/weerut/Desktop/angular",
+		"/C/Users/weerut/Desktop/angular/src"
+	],
+	"file_history":
+	[
+		"/C/Users/weerut/Desktop/angular/src/q.js",
+		"/C/Users/weerut/Desktop/angular/myangular.sublime-project",
+		"/C/Users/weerut/Desktop/angular/test/q_spec.js",
+		"/C/Users/weerut/Desktop/angular/setting.json",
+		"/C/Users/weerut/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app.json",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/i18n/ja-JP.json",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/ektoastmenu.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/i18n/zh-CN.json",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/Y/ConfigMachine/HACK/HackNotificationCenter_CMS_JetToast_Enabled.xml",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/X/ConfigMachine/SSOConfig.xml",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/X/ConfigMachine/MachineConfiguration.xml",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/X/ConfigMachine/HACK/HackNotificationCenter_CMS_JetToast_Enabled.xml",
+		"/C/Users/weerut/Desktop/angular/src/hash_map.js",
+		"/C/Users/weerut/Desktop/angular/test/hash_map_spec.js",
+		"/C/Users/weerut/Desktop/angular/src/injector.js",
+		"/C/Users/weerut/Desktop/angular/test/injector_spec.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/index.html",
+		"/C/Users/weerut/Desktop/angular/src/loader.js",
+		"/C/Users/weerut/Desktop/angular/karma.conf.js",
+		"/C/Users/weerut/Desktop/angular/CONTRIBUTING.md",
+		"/C/Users/weerut/Desktop/angular/src/filter.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/styles/ektoast.css",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/ektoast.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/ektoastpanel.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoast.html",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/History.html",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/controllers/HistoryMainController.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/styles/HistoryStyle.css",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/filter/toastTimeFilter.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/UI.html",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/controllers/UIMainController.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/app.js",
+		"/C/GIT/notificationcenter/src/NotificationClientModule/scripts/Services/messengerService.js",
+		"/C/GIT/notificationcenter/src/NotificationClientModule/scripts/Services/sharingService.js",
+		"/C/GIT/notificationcenter/src/NotificationClientModule/scripts/Services/alertService.js",
+		"/C/GIT/eikontoolbar/output/package/binaries/kpak.xml",
+		"/C/GIT/eikonsmartmenu/app.json",
+		"/C/Users/weerut/AppData/Roaming/Thomson Reuters/EikonLibrary/AppPublisher/THOMSONREUTERS.TEST.WEERUTTEST/1.0.0.0/THOMSONREUTERS.TEST.WEERUTTEST_1.0.0.0.kpak",
+		"/C/GIT/eikonsmartmenu/README.md",
+		"/C/GIT/eikonsmartmenu/output/app.json",
+		"/C/GIT/eikonsmartmenu/app/app.module.js",
+		"/C/GIT/eikonsmartmenu/Gruntfile.js",
+		"/C/GIT/eikonsmartmenu/index.html",
+		"/C/GIT/eikonsmartmenu/app/smartmenu/smartmenu.tpl.html",
+		"/C/GIT/eikonsmartmenu/app/app.js",
+		"/C/GIT/coreui/app.js",
+		"/C/GIT/coreui/bower_components/windowjs/Window.js",
+		"//10.42.33.54/Eikon/Home/Duangrudee/Toolbar Confidence Test/HACK/Hackconfiguration_Migrated.xml",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/EikonRoot.xml",
+		"//10.42.33.54/Eikon/Home/Duangrudee/Toolbar Confidence Test/HACK/HACK_AutoSave2.xml",
+		"//10.42.33.54/Eikon/Home/Duangrudee/Toolbar Confidence Test/HACK/HACK_AUTOLOGOUT.xml",
+		"//10.42.33.54/Eikon/Home/Duangrudee/Toolbar Confidence Test/HACK/ShowCitrixPrefHack.xml",
+		"/C/Program Files (x86)/Thomson Reuters/Eikon/Eikon.exe.xml",
+		"/C/Users/weerut/AppData/Local/Thomson Reuters/Eikon User/Cache/SSO/HeartBeatAffinity.xml",
+		"/C/Users/weerut/Desktop/angular/test/loader_spec.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/controllers/main.js",
+		"/C/Users/weerut/Desktop/angular/README.md",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/services/citrixService.js",
+		"/C/GIT/eikonsmartmenu/assets/smartmenu.css",
+		"/C/GIT/eikonsmartmenu/i18n/msg_en-US.json",
+		"/C/GIT/eikonsmartmenu/libs/browser.js",
+		"/C/GIT/eikonsmartmenu/libs/SWCLayout/JET.SWCLayout.js",
+		"/C/GIT/eikonsmartmenu/Service/AppService.js",
+		"/C/GIT/eikonsmartmenu/tests/test.categorycontroller.js",
+		"/C/GIT/eikontoolbar/src/TR.Common.Resources/Properties/Resource.ja-JP.resx",
+		"/C/GIT/eikontoolbar/README.md",
+		"/C/Users/weerut/AppData/Local/Temp/tmpF2F3.tmp.json",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoast-beta.html",
+		"/C/Users/weerut/Desktop/testFilter/script.js",
+		"/C/Users/weerut/Desktop/testFilter/index.html",
+		"/C/Users/weerut/AppData/Local/Temp/tmpB19A.tmp.json",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/bower.json",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/filter/ektoastFilter.js",
+		"/C/Users/weerut/Desktop/testFilter/toastTimeFilter.js",
+		"/C/Users/weerut/Desktop/testFilter/bower.json",
+		"/C/Users/weerut/Desktop/Test/index.htm",
+		"/C/Users/weerut/Desktop/Test/script.js",
+		"/C/Users/weerut/Desktop/Test/bower_components/moment/locale/ja.js",
+		"/C/Users/weerut/Desktop/Test/bower_components/moment/README.md",
+		"/C/Users/weerut/Desktop/New folder/script.js",
+		"/C/Users/weerut/Desktop/New folder/index.htm",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/Logs/DumpedConfiguration.xml",
+		"/C/GIT/eikonsettings/service/notificationService.js",
+		"/C/GIT/eikonsettings/service/aaaAccessService.js",
+		"/C/Users/weerut/Desktop/DumpedConfiguration.xml",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/services/settingsService.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/styles/main.css",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/animateFadeInOnChange.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/detectEvent.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoast-alert.html",
+		"/C/Users/weerut/AppData/Roaming/Sublime Text 3/Packages/jshintify/Jshintify.sublime-settings",
+		"/C/Users/weerut/Desktop/New folder/styles/main.css",
+		"/C/Users/weerut/Desktop/New folder/styles/EikonWebUI.css",
+		"/C/GIT/eikonsettings/assets/CentralSettings.css",
+		"/C/Users/weerut/Documents/HACK/HackNotificationCenter_CMS_JetToast_Enabled.xml",
+		"/C/GIT/eikonsettings/app/components/mainPage/mainPageView.html",
+		"/C/Users/weerut/Documents/MyJabberFiles/sorachai.atsawasrisilp@thomsonreuters.com/Hack_DisableNotificationCenter.xml",
+		"/C/ProgramData/Thomson Reuters/Eikon Data/X/ConfigMachine/HACK/Hackconfiguration_Migrated.xml",
+		"/C/Users/weerut/Desktop/angular/test/scope_spec.js",
+		"/C/Users/weerut/Desktop/angular/src/scope.js",
+		"/C/Users/weerut/Desktop/angular/src/hello.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/services/timerservice.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/bower_components/eikonNow/dist/EikonNow-1.3.3.js",
+		"/C/GIT/eikonnow/dist/EikonNow-1.3.3.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/bin/Debug/bower_components/jet-api/dist/JET.js",
+		"/C/Users/weerut/Desktop/New folder/index.html",
+		"/C/GIT/clientmodules/ClientModules/app.js",
+		"/C/GIT/clientmodules/ClientModules/Default.htm",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/include.html",
+		"/D/300 Source/NotificationSender/script.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoastmenu.html",
+		"/C/Users/weerut/Documents/MyJabberFiles/suksan.chaiwattanapong@thomsonreuters.com/UserInfoService.cs",
+		"/C/GIT/eikonsettings/app/common/configuration/configurationService.js",
+		"/C/Users/weerut/Desktop/memo/memo.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/bower_components/angular/angular.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/i18n/en-US.json",
+		"/C/Users/weerut/AppData/Local/Temp/tmpE4DF.tmp.html",
+		"/C/Users/weerut/AppData/Local/Temp/tmpC691.tmp.js",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoastpanel.html",
+		"/C/Users/weerut/AppData/Local/Thomson_Reuters/DefaultDomain_Path_cbft0dow2djleclzoeccfvtmbehtiq50/4.0/user.config",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/bower_components/jet-app/README.md",
+		"/C/Users/weerut/AppData/Local/Temp/tmpC089.tmp.html",
+		"/C/Users/weerut/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/.jshintrc",
+		"/C/Users/weerut/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/JSHint.sublime-settings",
+		"/C/Users/weerut/.jshintrc",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/.jshintrc",
+		"/C/GIT/notificationcenter/src/NotificationToastUI/.jscsrc"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"C:\\GIT\\coreui",
+			"C:\\GIT\\eikonsettings",
+			"C:\\GIT\\notificationcenter\\src\\NotificationToastUI",
+			"C:\\GIT\\thinmessenger",
+			"C:\\GIT\\clientmodules",
+			"C:\\GIT\\notificationcenter\\src\\NotificationToastUI",
+			"C:\\GIT\\coreui",
+			"C:\\GIT\\eikonsettings",
+			"C:\\GIT\\notificationcenter\\src\\NotificationToastUI\\app\\styles",
+			"C:\\GIT\\notificationcenter\\src\\NotificationToastUI"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"createModule",
+			"$provide",
+			"[];\n",
+			"instanceInjector",
+			"strictDi",
+			"createInternalInjector",
+			"function",
+			"providerCache",
+			"getService",
+			"light",
+			"toast",
+			"jet",
+			"applyLanguage",
+			"window",
+			"open",
+			"topmost",
+			"topmost-true",
+			"top-most",
+			"open",
+			"openApp",
+			"citrixService",
+			"processToast",
+			"processRequest",
+			"isCitrix",
+			"getCitrixSettings",
+			"appInit",
+			"jetInit",
+			"getCitrixSettings",
+			"callback",
+			"getJobRoleName",
+			"getAssetClassName",
+			"locale",
+			"$scope.locale",
+			"$scope.timeFormat",
+			"locale",
+			"timeFormat",
+			"locale",
+			"$locale",
+			"\n	",
+			"locale",
+			"mmm",
+			"locale",
+			"                    \n                    \nyyyy",
+			"dd",
+			"mm",
+			"date",
+			"timeDate",
+			"time",
+			"date",
+			"remove",
+			"$locale",
+			"jetInit",
+			"appInit",
+			"dateTIMEFORMAT_TIMEPATTERN",
+			"date",
+			"TIMEFORMAT_TIMEPATTERN",
+			"date",
+			"datetime",
+			"date Time",
+			"datetime",
+			"updateToast",
+			"setToastTimer",
+			"toastTimeout",
+			"setToastTimer",
+			"toastTimeout",
+			"update",
+			"bAddTimeAfterMouseLeave",
+			"updateToastState",
+			"updateToast",
+			"setToastTimer",
+			"toast.state = enumState.visible",
+			"toast.state",
+			"toast.state = visi",
+			"toast.state=visi",
+			"update",
+			"yodate",
+			"toast.state",
+			"text-sha",
+			"anti",
+			".css",
+			"EikonNow",
+			"typeMessenger",
+			"smart",
+			"$$areEqual",
+			"startCountdown",
+			"settingsCallback",
+			"setExpiryTime",
+			"config",
+			"init",
+			"isEnabled",
+			"eikonNow",
+			"eikonNow.isenable",
+			"EikonNow",
+			"Eikon Messenger",
+			"startClientModules",
+			"initClientModules",
+			"Client Service Module Starter",
+			"Notification Center Toasts",
+			"Tiasts",
+			"init",
+			"openApp",
+			"theme",
+			"remove",
+			"openSharedItem",
+			"execute",
+			"openSharedItem",
+			"openWorkspaceChannel",
+			"cloud",
+			"sendPayload",
+			"$compile",
+			"$complie",
+			"mode",
+			"actionpanel",
+			"\nactionpanel",
+			"actionpanel",
+			"actopanel",
+			"actopane;",
+			"remove",
+			"พำทนอำ",
+			"actionpanelover",
+			"paneltext",
+			"ng-class",
+			"dockBehavior",
+			"dockBehaviorSupport",
+			"Settings",
+			"appInit",
+			"placeWindow",
+			"get theme"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			",",
+			"\"type\"",
+			"\"actions\"",
+			"\"",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "myangular.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								138,
+								138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JSON (JavaScriptNext).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 142.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "myangular.sublime-project",
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 284.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
