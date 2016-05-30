@@ -2,8 +2,14 @@
 	"folders":
 	[
 		{
-			"name":"myangular",
-			"path": "C:\\Users\\weerut\\Desktop\\angular"
+			"name": "myangular",
+			"path": "."
+		},
+		{
+			"path": "C:\\GIT\\coreui"
+		},
+		{
+			"path": "C:\\GIT\\clientmodules"
 		}
 	],
 	"settings":

@@ -5,7 +5,19 @@
 		[
 			[
 				"pro",
-				"prototype"
+				"promise"
+			],
+			[
+				"reje",
+				"rejection"
+			],
+			[
+				"progre",
+				"progressBack"
+			],
+			[
+				"callb",
+				"callbackValue"
 			],
 			[
 				"hash",
@@ -192,11 +204,19 @@
 	"buffers":
 	[
 		{
-			"file": "myangular.sublime-project",
+			"file": "src/q.js",
 			"settings":
 			{
-				"buffer_size": 138,
-				"line_ending": "Unix"
+				"buffer_size": 4088,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test/q_spec.js",
+			"settings":
+			{
+				"buffer_size": 17133,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -281,12 +301,13 @@
 	"expanded_folders":
 	[
 		"/C/Users/weerut/Desktop/angular",
-		"/C/Users/weerut/Desktop/angular/src"
+		"/C/Users/weerut/Desktop/angular/src",
+		"/C/Users/weerut/Desktop/angular/test"
 	],
 	"file_history":
 	[
-		"/C/Users/weerut/Desktop/angular/src/q.js",
 		"/C/Users/weerut/Desktop/angular/myangular.sublime-project",
+		"/C/Users/weerut/Desktop/angular/src/q.js",
 		"/C/Users/weerut/Desktop/angular/test/q_spec.js",
 		"/C/Users/weerut/Desktop/angular/setting.json",
 		"/C/Users/weerut/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -440,6 +461,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reject",
 			"createModule",
 			"$provide",
 			"[];\n",
@@ -566,8 +588,7 @@
 			"dockBehaviorSupport",
 			"Settings",
 			"appInit",
-			"placeWindow",
-			"get theme"
+			"placeWindow"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -596,31 +617,66 @@
 			[
 				{
 					"buffer": 0,
-					"file": "myangular.sublime-project",
+					"file": "src/q.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 138,
+						"buffer_size": 4088,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								138,
-								138
+								3515,
+								3515
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JSON (JavaScriptNext).tmLanguage",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2815.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "test/q_spec.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17097,
+								17097
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11520.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -643,11 +699,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.518698956174,
 			1.0
 		],
 		"rows":
@@ -707,7 +770,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 284.0,
+	"side_bar_width": 334.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
