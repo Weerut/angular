@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"wit",
+				"withCredentials"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"de",
+				"defaults"
+			],
+			[
+				"def",
+				"defaults"
+			],
+			[
+				"htt",
+				"$http	AngularJS"
+			],
+			[
 				"sta",
 				"status"
 			],
@@ -219,6 +239,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/http.js",
+			"settings":
+			{
+				"buffer_size": 4580,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/http_backend.js",
+			"settings":
+			{
+				"buffer_size": 782,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test/http_spec.js",
+			"settings":
+			{
+				"buffer_size": 9105,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -302,15 +346,15 @@
 	[
 		"/C/Users/weerut/Desktop/angular",
 		"/C/Users/weerut/Desktop/angular/src",
-		"/C/Users/weerut/Desktop/angular/test",
-		"/C/GIT/coreui",
-		"/C/GIT/clientmodules",
-		"/C/GIT/clientmodules/ClientModules"
+		"/C/Users/weerut/Desktop/angular/test"
 	],
 	"file_history":
 	[
-		"/C/Users/weerut/Desktop/angular/test/http_spec.js",
+		"/C/Users/weerut/.gitconfig",
+		"/C/Users/weerut/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/N4VVGFPO/ATT62706.npmrc",
 		"/C/Users/weerut/Desktop/angular/src/http_backend.js",
+		"/C/Users/weerut/.npmrc",
+		"/C/Users/weerut/Desktop/angular/test/http_spec.js",
 		"/C/Users/weerut/Desktop/angular/src/http.js",
 		"/C/Users/weerut/Desktop/angular/karma.conf.js",
 		"/C/Users/weerut/Downloads/build-your-own-angularjs-chapter15-http/src/http.js",
@@ -433,10 +477,7 @@
 		"/C/GIT/clientmodules/ClientModules/Default.htm",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/include.html",
 		"/D/300 Source/NotificationSender/script.js",
-		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoastmenu.html",
-		"/C/Users/weerut/Documents/MyJabberFiles/suksan.chaiwattanapong@thomsonreuters.com/UserInfoService.cs",
-		"/C/GIT/eikonsettings/app/common/configuration/configurationService.js",
-		"/C/Users/weerut/Desktop/memo/memo.js"
+		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoastmenu.html"
 	],
 	"find":
 	{
@@ -464,6 +505,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"transformData",
 			"httpBackend",
 			"$$q",
 			"callLater",
@@ -590,8 +632,7 @@
 			"พำทนอำ",
 			"actionpanelover",
 			"paneltext",
-			"ng-class",
-			"dockBehavior"
+			"ng-class"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -615,13 +656,102 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/http.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2998,
+								2998
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1855.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 1,
+					"file": "src/http_backend.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								742,
+								742
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test/http_spec.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9105,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8631,
+								8631
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -653,7 +783,7 @@
 		"cols":
 		[
 			0.0,
-			0.488434139024,
+			0.475500570535,
 			1.0
 		],
 		"rows":
@@ -705,7 +835,7 @@
 		],
 		"width": 593.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -713,7 +843,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 334.0,
+	"side_bar_width": 136.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
