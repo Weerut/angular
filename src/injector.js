@@ -106,7 +106,8 @@ function createInjector(modulesToLoad, strictDi) {
 				}
 			}
 		}
-
+		// Function which invoke fn parameter as function
+		// While inject parameter automatically.
 		function invoke(fn, self, locals) {
 			//  Get value of parameter in parameter array.
 			var args = _.map(annotate(fn), function(token) {
