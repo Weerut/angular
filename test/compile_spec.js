@@ -564,5 +564,99 @@ describe('$compile2', function() {
 			expect(compilations).toEqual(['first', 'second']);
 		});
 	});
-
+	it('stops compiling at a terminal directive', function() {
+		var compilations = [];
+		var myModule = window.angular.module('myModule', []);
+		myModule.directive('firstDirective', function() {
+			return {
+				priority: 1,
+				terminal: true,
+				compile: function(element) {
+					compilations.push('first');
+				}
+			};
+		});
+		myModule.directive('secondDirective', function() {
+			return {
+				priority: 0,
+				compile: function(element) {
+					compilations.push('second');
+				}
+			};
+		});
+		var injector = createInjector(['ng', 'myModule']);
+		injector.invoke(function($compile) {
+			var el = $('<div first-directive second-directive></div>');
+			$compile(el);
+			expect(compilations).toEqual(['first']);
+		});
+	});
+	it('still compiles directives with same priority after terminal', function() {
+		var compilations = [];
+		var myModule = window.angular.module('myModule', []);
+		myModule.directive('firstDirective', function() {
+			return {
+				priority: 1,
+				terminal: true,
+				compile: function(element) {
+					compilations.push('first');
+				}
+			};
+		});
+		myModule.directive('secondDirective', function() {
+			return {
+				priority: 1,
+				compile: function(element) {
+					compilations.push('second');
+				}
+			};
+		});
+		var injector = createInjector(['ng', 'myModule']);
+		injector.invoke(function($compile) {
+			var el = $('<div first-directive second-directive></div>');
+			$compile(el);
+			expect(compilations).toEqual(['first', 'second']);
+		});
+	});
+	it('stops child compilation after a terminal directive', function() {
+		var compilations = [];
+		var myModule = window.angular.module('myModule', []);
+		myModule.directive('parentDirective', function() {
+			return {
+				terminal: true,
+				compile: function(element) {
+					compilations.push('parent');
+				}
+			};
+		});
+		myModule.directive('childDirective', function() {
+			return {
+				compile: function(element) {
+					compilations.push('child');
+				}
+			};
+		});
+		var injector = createInjector(['ng', 'myModule']);
+		injector.invoke(function($compile) {
+			var el = $('<div parent-directive><div child-directive></div></div>');
+			$compile(el);
+			expect(compilations).toEqual(['parent']);
+		});
+	});
+	it('allows applying a directive to multiple elements', function() {
+		var compileEl = false;
+		var injector = makeInjectorWithDirectives('myDir', function() {
+			return {
+				multiElement: true,
+				compile: function(element) {
+					compileEl = element;
+				}
+			};
+		});
+		injector.invoke(function($compile) {
+			var el = $('<div my-dir-start></div><span></span><div my-dir-end></div>');
+			$compile(el);
+			expect(compileEl.length).toBe(3);
+		});
+	});
 });
