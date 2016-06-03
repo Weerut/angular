@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"linkNo",
+				"linkNodes"
+			],
+			[
+				"child",
+				"childLinkFn"
+			],
+			[
+				"chil",
+				"childLinkFn"
+			],
+			[
+				"comp",
+				"compile"
+			],
+			[
+				"direct",
+				"directive"
+			],
+			[
+				"direc",
+				"directive"
+			],
+			[
+				"linkFn",
+				"linkFn"
+			],
+			[
+				"link",
+				"linkFns"
+			],
+			[
+				"node",
+				"nodeLinkFn"
+			],
+			[
+				"compile",
+				"compileNodes"
+			],
+			[
+				"com",
+				"compileNodes"
+			],
+			[
 				"index",
 				"indexOf"
 			],
@@ -18,10 +62,6 @@
 			[
 				"atts",
 				"attrs"
-			],
-			[
-				"direct",
-				"directives"
 			],
 			[
 				"wit",
@@ -263,7 +303,7 @@
 			"file": "src/compile.js",
 			"settings":
 			{
-				"buffer_size": 10151,
+				"buffer_size": 11478,
 				"line_ending": "Windows"
 			}
 		},
@@ -271,7 +311,7 @@
 			"file": "test/compile_spec.js",
 			"settings":
 			{
-				"buffer_size": 27951,
+				"buffer_size": 31331,
 				"line_ending": "Windows"
 			}
 		}
@@ -357,11 +397,11 @@
 	"expanded_folders":
 	[
 		"/C/Users/weerut/Desktop/angular",
-		"/C/Users/weerut/Desktop/angular/src",
-		"/C/Users/weerut/Desktop/angular/test"
+		"/C/Users/weerut/Desktop/angular/src"
 	],
 	"file_history":
 	[
+		"/C/Users/weerut/Desktop/angular/myangular.sublime-workspace",
 		"/C/Users/weerut/Desktop/angular/src/http_backend.js",
 		"/C/Users/weerut/Desktop/angular/src/http.js",
 		"/C/Users/weerut/Desktop/angular/test/http_spec.js",
@@ -488,8 +528,7 @@
 		"/C/Users/weerut/Desktop/New folder/index.html",
 		"/C/GIT/clientmodules/ClientModules/Default.htm",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/include.html",
-		"/D/300 Source/NotificationSender/script.js",
-		"/C/GIT/notificationcenter/src/NotificationToastUI/app/views/ektoastmenu.html"
+		"/D/300 Source/NotificationSender/script.js"
 	],
 	"find":
 	{
@@ -517,6 +556,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"linkNode",
+			" $rootScope",
+			"beforeEach",
+			"describe",
 			"$attr",
 			"});\n",
 			"directiveIsMultiElement",
@@ -640,11 +683,7 @@
 			"mode",
 			"actionpanel",
 			"\nactionpanel",
-			"actionpanel",
-			"actopanel",
-			"actopane;",
-			"remove",
-			"พำทนอำ"
+			"actionpanel"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -677,15 +716,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10151,
+						"buffer_size": 11478,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3816,
-								3816
+								5209,
+								5209
 							]
 						],
 						"settings":
@@ -694,7 +733,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2838.0,
+						"translation.y": 4224.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -712,15 +751,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 27951,
+						"buffer_size": 31331,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								27733,
-								27733
+								31230,
+								31217
 							]
 						],
 						"settings":
@@ -729,7 +768,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 18221.0,
+						"translation.y": 20107.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -766,7 +805,7 @@
 		"cols":
 		[
 			0.0,
-			0.475500570535,
+			0.562585708714,
 			1.0
 		],
 		"rows":
@@ -826,7 +865,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 229.0,
+	"side_bar_width": 165.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

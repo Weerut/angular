@@ -52,8 +52,7 @@ function $CompileProvider($provide) {
 
 	var hasDirectives = {};
 
-
-
+	// Function to Add directive into injector.
 	this.directive = function(name, directiveFactory) {
 		if (_.isString(name)) {
 			if (name === 'hasOwnProperty') {
@@ -67,6 +66,9 @@ function $CompileProvider($provide) {
 						var directive = $injector.invoke(factory);
 						directive.restrict = directive.restrict || 'EA';
 						directive.priority = directive.priority || 0;
+						if (directive.link && !directive.compile) {
+							directive.compile = _.constant(directive.link);
+						}
 						directive.name = directive.name || name;
 						directive.index = i;
 						return directive;
@@ -145,7 +147,7 @@ function $CompileProvider($provide) {
 		};
 		Attributes.prototype.$removeClass = function(classVal) {
 			this.$$element.removeClass(classVal);
-		}
+		};
 		Attributes.prototype.$updateClass = function(newClassVal, oldClassVal) {
 			var newClasses = newClassVal.split(/\s+/);
 			var oldClasses = oldClassVal.split(/\s+/);
@@ -190,25 +192,54 @@ function $CompileProvider($provide) {
 			return false;
 		}
 
+		// MAIN method to make compilation.
 		function compile($compileNodes) {
-			return compileNodes($compileNodes);
+			var compositeLinkFn = compileNodes($compileNodes);
+			return function publicLinkFn(scope) {
+				$compileNodes.data('$scope', scope);
+				compositeLinkFn(scope, $compileNodes);
+			};
 		}
 
 		// Actual compile process
 		function compileNodes($compileNodes) {
-			// in case there are more than 1 topmost level node 
-			_.forEach($compileNodes, function(node) {
+			// Array to keep link function which is result of compiling node.
+			var linkFns = []
+				// in case there are more than 1 topmost level node 
+			_.forEach($compileNodes, function(node, i) {
 				// Prepare object of attributes each node.
 				var attrs = new Attributes($(node));
 				// Get directive of that node from registered directives in inject.
 				var directives = collectDirectives(node, attrs);
-				// Apply directive to node
-				var terminal = applyDirectivesToNode(directives, node, attrs);
-				if (!terminal && node.childNodes && node.childNodes.length) {
-					compileNodes(node.childNodes);
+				// Link function of each node.
+				var nodeLinkFn;
+				if (directives.length) {
+					// Apply directive to node
+					nodeLinkFn = applyDirectivesToNode(directives, node, attrs);
+				}
+				var childLinkFn;
+				if ((!nodeLinkFn || !nodeLinkFn.terminal) &&
+					node.childNodes && node.childNodes.length) {
+					childLinkFn = compileNodes(node.childNodes);
+				}
+				if (nodeLinkFn || childLinkFn) {
+					linkFns.push({
+						nodeLinkFn: nodeLinkFn,
+						childLinkFn: childLinkFn,
+						idx: i
+					});
 				}
 			});
+
+			function compositeLinkFn(scope, linkNodes) {
+				_.forEach(linkFns, function(linkFn) {
+					linkFn.nodeLinkFn(linkFn.childLinkFn, scope, linkNodes[linkFn.idx]);
+				});
+			}
+			return compositeLinkFn;
 		}
+
+
 
 		function collectDirectives(node, attrs) {
 			var directives = [];
@@ -312,6 +343,7 @@ function $CompileProvider($provide) {
 			var $compileNode = $(compileNode);
 			var terminalPriority = -Number.MAX_VALUE;
 			var terminal = false;
+			var linkFns = [];
 			_.forEach(directives, function(directive) {
 				if (directive.$$start) {
 					$compileNode = groupScan(compileNode, directive.$$start, directive.$$end);
@@ -320,14 +352,28 @@ function $CompileProvider($provide) {
 					return false;
 				}
 				if (directive.compile) {
-					directive.compile($compileNode, attrs);
+					var linkFn = directive.compile($compileNode, attrs);
+					if (linkFn) {
+						linkFns.push(linkFn);
+					}
 				}
 				if (directive.terminal) {
 					terminal = true;
 					terminalPriority = directive.priority;
 				}
 			});
-			return terminal;
+
+			function nodeLinkFn(childLinkFn, scope, linkNode) {
+				if (childLinkFn) {
+					childLinkFn(scope, linkNode.childNodes);
+				}
+				_.forEach(linkFns, function(linkFn) {
+					var $element = $(linkNode);
+					linkFn(scope, $element, attrs);
+				});
+			}
+			nodeLinkFn.terminal = terminal;
+			return nodeLinkFn;
 		}
 
 
