@@ -25,8 +25,28 @@ function byPriority(a, b) {
 		}
 	}
 }
+var BOOLEAN_ATTRS = {
+	multiple: true,
+	selected: true,
+	checked: true,
+	disabled: true,
+	readOnly: true,
+	required: true,
+	open: true
+};
+var BOOLEAN_ELEMENTS = {
+	INPUT: true,
+	SELECT: true,
+	OPTION: true,
+	TEXTAREA: true,
+	BUTTON: true,
+	FORM: true,
+	DETAILS: true
+};
 
-
+function isBooleanAttribute(node, attrName) {
+	return BOOLEAN_ATTRS[attrName] && BOOLEAN_ELEMENTS[node.nodeName];
+}
 
 function $CompileProvider($provide) {
 
@@ -61,17 +81,83 @@ function $CompileProvider($provide) {
 		}
 	};
 
-	this.$get = ['$injector', function($injector) {
-		
-		function directiveIsMultiElement(name) {
-			if (hasDirectives.hasOwnProperty(name)) {
-				var directives = $injector.get(name + 'Directive');
-				return _.some(directives, {
-					multiElement: true
+	this.$get = ['$injector', '$rootScope', function($injector, $rootScope) {
+
+		/* Constrctor fpr Attribute class
+		This class wil have member as following
+		:- property
+			- $$element :element whose attribute attached to
+			- $attr : table object map between element key and actual name.
+			- attributeName:value  (attribute found in node)
+			- className:value  (attribute found in node)
+		:- Method
+			- $set : to set value of the attribute.
+			- $observe : to set callback with new value parameter then there is a change in attribute value.*/
+		function Attributes(element) {
+			this.$$element = element;
+			// this is mapping for normalized attribute name and atribute name
+			this.$attr = {};
+		}
+		Attributes.prototype.$set = function(key, value, writeAttr, attrName) {
+			this[key] = value;
+			if (isBooleanAttribute(this.$$element[0], key)) {
+				this.$$element.prop(key, value);
+			}
+			if (!attrName) {
+				if (this.$attr[key]) {
+					attrName = this.$attr[key];
+				} else {
+					attrName = this.$attr[key] = _.kebabCase(key, '-');
+				}
+			} else {
+				this.$attr[key] = attrName;
+			}
+			if (writeAttr !== false) {
+				this.$$element.attr(attrName, value);
+			}
+
+			if (this.$$observers) {
+				_.forEach(this.$$observers[key], function(observer) {
+					try {
+						observer(value);
+					} catch (e) {
+						console.log(e);
+					}
 				});
 			}
-			return false;
+		};
+		Attributes.prototype.$observe = function(key, fn) {
+			var self = this;
+			this.$$observers = this.$$observers || Object.create(null);
+			this.$$observers[key] = this.$$observers[key] || [];
+			this.$$observers[key].push(fn);
+			$rootScope.$evalAsync(function() {
+				fn(self[key]);
+			});
+			return function() {
+				var index = self.$$observers[key].indexOf(fn);
+				if (index >= 0)
+					self.$$observers[key].splice(index, 1);
+			};
+		};
+		Attributes.prototype.$addClass = function(classVal) {
+			this.$$element.addClass(classVal);
+		};
+		Attributes.prototype.$removeClass = function(classVal) {
+			this.$$element.removeClass(classVal);
 		}
+		Attributes.prototype.$updateClass = function(newClassVal, oldClassVal) {
+			var newClasses = newClassVal.split(/\s+/);
+			var oldClasses = oldClassVal.split(/\s+/);
+			var addedClasses = _.difference(newClasses, oldClasses);
+			var removedClasses = _.difference(oldClasses, newClasses);
+			if (addedClasses.length) {
+				this.$addClass(addedClasses.join(' '));
+			}
+			if (removedClasses.length) {
+				this.$removeClass(removedClasses.join(' '));
+			}
+		};
 
 		function groupScan(node, startAttr, endAttr) {
 			var nodes = [];
@@ -102,27 +188,6 @@ function $CompileProvider($provide) {
 				});
 			}
 			return false;
-		}
-
-		function groupScan(node, startAttr, endAttr) {
-			var nodes = [];
-			if (startAttr && node && node.hasAttribute(startAttr)) {
-				var depth = 0;
-				do {
-					if (node.nodeType === Node.ELEMENT_NODE) {
-						if (node.hasAttribute(startAttr)) {
-							depth++;
-						} else if (node.hasAttribute(endAttr)) {
-							depth--;
-						}
-					}
-					nodes.push(node);
-					node = node.nextSibling;
-				} while (depth > 0);
-			} else {
-				nodes.push(node);
-			}
-			return $(nodes);
 		}
 
 		function compile($compileNodes) {
@@ -133,49 +198,88 @@ function $CompileProvider($provide) {
 		function compileNodes($compileNodes) {
 			// in case there are more than 1 topmost level node 
 			_.forEach($compileNodes, function(node) {
+				// Prepare object of attributes each node.
+				var attrs = new Attributes($(node));
 				// Get directive of that node from registered directives in inject.
-				var directives = collectDirectives(node);
+				var directives = collectDirectives(node, attrs);
 				// Apply directive to node
-				var terminal = applyDirectivesToNode(directives, node);
+				var terminal = applyDirectivesToNode(directives, node, attrs);
 				if (!terminal && node.childNodes && node.childNodes.length) {
 					compileNodes(node.childNodes);
 				}
 			});
 		}
 
-		function collectDirectives(node) {
+		function collectDirectives(node, attrs) {
 			var directives = [];
+			var match;
 			if (node.nodeType === Node.ELEMENT_NODE) {
+				/*-----------------------------------------*/
+				/*  Collecting directive which is ELEMENT  */
 				// get camel case name.
 				var normalizedNodeName = directiveNormalize(nodeName(node).toLowerCase());
 				// use get camelCase name check with directive list to get directives.
 				addDirective(directives, normalizedNodeName, 'E');
+				/*-----------------------------------------*/
+				/* Collecting directive which is ATTRIBUTE */
 				_.forEach(node.attributes, function(attr) {
 					var attrStartName, attrEndName;
 					var name = attr.name;
 					var normalizedAttrName = directiveNormalize(name.toLowerCase());
-					if (/^ngAttr[A-Z]/.test(normalizedAttrName)) {
-						name = _.kebabCase(normalizedAttrName[6].toLowerCase() + normalizedAttrName.substring(7));
+					var isNgAttr = /^ngAttr[A-Z]/.test(normalizedAttrName);
+					if (isNgAttr) {
+						name = _.kebabCase(
+							normalizedAttrName[6].toLowerCase() +
+							normalizedAttrName.substring(7)
+						);
+						normalizedAttrName = directiveNormalize(name.toLowerCase());
 					}
-					var directiveNName = normalizedAttrName.replace(/(Start|End)$/, '');
-					if (directiveIsMultiElement(directiveNName)) {
+					attrs.$attr[normalizedAttrName] = name;
+					var directiveName = normalizedAttrName.replace(/(Start|End)$/, '');
+					if (directiveIsMultiElement(directiveName)) {
 						if (/Start$/.test(normalizedAttrName)) {
 							attrStartName = name;
 							attrEndName = name.substring(0, name.length - 5) + 'end';
 							name = name.substring(0, name.length - 6);
 						}
 					}
-					normalizedAttrName = directiveNormalize(name.toLowerCase());
-					addDirective(directives, normalizedAttrName, 'A', attrStartName, attrEndName);
+					if (isNgAttr || !attrs.hasOwnProperty(normalizedAttrName)) {
+						normalizedAttrName = directiveNormalize(name.toLowerCase());
+						addDirective(directives, normalizedAttrName, 'A', attrStartName, attrEndName);
+						attrs[normalizedAttrName] = attr.value.trim();
+						if (isBooleanAttribute(node, normalizedAttrName)) {
+							attrs[normalizedAttrName] = true;
+						}
+					}
 				});
+				/*-----------------------------------------*/
+				/*   Collecting directive which is CLASS   */
 				_.forEach(node.classList, function(cls) {
 					var normalizedClassName = directiveNormalize(cls);
-					addDirective(directives, normalizedClassName, 'C');
+					if (addDirective(directives, normalizedClassName, 'C')) {
+						attrs[normalizedClassName] = undefined;
+					}
 				});
-			} else if (node.nodeType === Node.COMMENT_NODE) {
-				var match = /^\s*directive\:\s*([\d\w\-_]+)/.exec(node.nodeValue);
+				var className = node.className;
+				if (_.isString(className) && !_.isEmpty(className)) {}
+				while ((match = /([\d\w\-_]+)(?:\:([^;]+))?;?/.exec(className))) {
+					var normalizedClassName = directiveNormalize(match[1]);
+					if (addDirective(directives, normalizedClassName, 'C')) {
+						attrs[normalizedClassName] = match[2] ? match[2].trim() : undefined;
+					}
+					className = className.substr(match.index + match[0].length);
+				}
+
+			} else
+			/*-----------------------------------------*/
+			/*  Collecting directive which is COMMENT  */
+			if (node.nodeType === Node.COMMENT_NODE) {
+				match = /^\s*directive\:\s*([\d\w\-_]+)\s*(.*)$/.exec(node.nodeValue);
 				if (match) {
-					addDirective(directives, directiveNormalize(match[1]), 'M');
+					var normalizedName = directiveNormalize(match[1]);
+					if (addDirective(directives, normalizedName, 'M')) {
+						attrs[normalizedName] = match[2] ? match[2].trim() : undefined;
+					}
 				}
 			}
 			directives.sort(byPriority);
@@ -183,6 +287,7 @@ function $CompileProvider($provide) {
 		}
 
 		function addDirective(directives, name, mode, attrStartName, attrEndName) {
+			var match;
 			if (hasDirectives.hasOwnProperty(name)) {
 				var foundDirectives = $injector.get(name + 'Directive');
 				var applicableDirectives = _.filter(foundDirectives, function(dir) {
@@ -196,12 +301,14 @@ function $CompileProvider($provide) {
 						});
 					}
 					directives.push(directive);
+					match = directive;
 				});
 			}
+			return match;
 		}
 
 
-		function applyDirectivesToNode(directives, compileNode) {
+		function applyDirectivesToNode(directives, compileNode, attrs) {
 			var $compileNode = $(compileNode);
 			var terminalPriority = -Number.MAX_VALUE;
 			var terminal = false;
@@ -213,7 +320,7 @@ function $CompileProvider($provide) {
 					return false;
 				}
 				if (directive.compile) {
-					directive.compile($compileNode);
+					directive.compile($compileNode, attrs);
 				}
 				if (directive.terminal) {
 					terminal = true;
