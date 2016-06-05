@@ -51,10 +51,12 @@ function isBooleanAttribute(node, attrName) {
 function parseIsolateBindings(scope) {
 	var bindings = {};
 	_.forEach(scope, function(definition, scopeName) {
-		var match = definition.match(/\s*@\s*(\w*)\s*/);
+		var match = definition.match(/\s*([@<&]|=(\*?))(\??)\s*(\w*)\s*/);
 		bindings[scopeName] = {
-			mode: '@',
-			attrName: match[1] || scopeName
+			mode: match[1][0],
+			collection: match[2] === '*',
+			optional: match[3],
+			attrName: match[4] || scopeName
 		};
 	});
 	return bindings;
@@ -99,7 +101,7 @@ function $CompileProvider($provide) {
 		}
 	};
 
-	this.$get = ['$injector', '$rootScope', function($injector, $rootScope) {
+	this.$get = ['$injector', '$parse', '$rootScope', function($injector, $parse, $rootScope) {
 
 		/* Constrctor fpr Attribute class
 		This class wil have member as following
@@ -498,6 +500,52 @@ function $CompileProvider($provide) {
 								if (attrs[attrName]) {
 									isolateScope[scopeName] = attrs[attrName];
 								}
+								break;
+							case '<':
+								if (definition.optional && !attrs[attrName]) {
+									break;
+								}
+								var parentGet = $parse(attrs[attrName]);
+								isolateScope[scopeName] = parentGet(scope);
+								var unwatch = scope.$watch(parentGet, function(newValue) {
+									isolateScope[scopeName] = newValue;
+								});
+								isolateScope.$on('$destroy', unwatch);
+								break;
+							case '=':
+								if (definition.optional && !attrs[attrName]) {
+									break;
+								}
+								parentGet = $parse(attrs[attrName]);
+								var lastValue = isolateScope[scopeName] = parentGet(scope);
+
+								var parentValueWatch = function() {
+									var parentValue = parentGet(scope);
+									if (isolateScope[scopeName] !== parentValue) {
+										if (parentValue !== lastValue) {
+											isolateScope[scopeName] = parentValue;
+										} else {
+											parentValue = isolateScope[scopeName];
+											parentGet.assign(scope, parentValue);
+										}
+									}
+									lastValue = parentValue;
+									return lastValue;
+								};
+								if (definition.collection) {
+									unwatch = scope.$watchCollection(attrs[attrName], parentValueWatch);
+								} else {
+									unwatch = scope.$watch(parentValueWatch);
+								}
+								break;
+							case '&':
+								var parentExpr = $parse(attrs[attrName]);
+								if (parentExpr === _.noop && definition.optional) {
+									break;
+								}
+								isolateScope[scopeName] = function(locals) {
+									return parentExpr(scope, locals);
+								};
 								break;
 						}
 					});
