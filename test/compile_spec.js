@@ -1829,5 +1829,45 @@ describe('$compile', function() {
 				expect(gotMyAttr).toEqual('abc');
 			});
 		});
+		it('can bind isolate scope bindings directly to self', function() {
+			var gotMyAttr;
+
+			function MyController() {
+				gotMyAttr = this.myAttr;
+			}
+			var injector = createInjector(['ng', function($controllerProvider, $compileProvider) {
+				$controllerProvider.register('MyController', MyController);
+				$compileProvider.directive('myDirective', function() {
+					return {
+						scope: {
+							myAttr: '@myDirective'
+						},
+						controller: 'MyController',
+						bindToController: true
+					};
+				});
+			}]);
+			injector.invoke(function($compile, $rootScope) {
+				var el = $('<div my-directive="abc"></div>');
+				$compile(el)($rootScope);
+				expect(gotMyAttr).toEqual('abc');
+			});
+		});
+		it('can return a semi-constructed controller', function() {
+			var injector = createInjector(['ng']);
+			var $controller = injector.get('$controller');
+
+			function MyController() {
+				this.constructed = true;
+				this.myAttrWhenConstructed = this.myAttr;
+			}
+			var controller = $controller(MyController, null, true);
+			expect(controller.constructed).toBeUndefined();
+			expect(controller.instance).toBeDefined();
+			controller.instance.myAttr = 42;
+			var actualController = controller();
+			expect(actualController.constructed).toBeDefined();
+			expect(actualController.myAttrWhenConstructed).toBe(42);
+		});
 	});
 });
