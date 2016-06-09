@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"semi",
+				"semiInstance"
+			],
+			[
 				"linkNo",
 				"linkNodes"
 			],
@@ -300,10 +304,26 @@
 	"buffers":
 	[
 		{
+			"file": "src/controller.js",
+			"settings":
+			{
+				"buffer_size": 1964,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/injector.js",
+			"settings":
+			{
+				"buffer_size": 5394,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "src/compile.js",
 			"settings":
 			{
-				"buffer_size": 11478,
+				"buffer_size": 19485,
 				"line_ending": "Windows"
 			}
 		},
@@ -311,7 +331,7 @@
 			"file": "test/compile_spec.js",
 			"settings":
 			{
-				"buffer_size": 31331,
+				"buffer_size": 60162,
 				"line_ending": "Windows"
 			}
 		}
@@ -324,7 +344,7 @@
 	"command_palette":
 	{
 		"height": 104.0,
-		"last_filter": "install",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -380,7 +400,7 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 174.0,
 		"history":
 		[
 		]
@@ -397,18 +417,23 @@
 	"expanded_folders":
 	[
 		"/C/Users/weerut/Desktop/angular",
-		"/C/Users/weerut/Desktop/angular/src"
+		"/C/Users/weerut/Desktop/angular/src",
+		"/C/Users/weerut/Desktop/angular/test"
 	],
 	"file_history":
 	[
+		"/C/Users/weerut/Desktop/angular/karma.conf.js",
+		"/C/Users/weerut/Desktop/angular/src/filter.js",
+		"/C/Users/weerut/Desktop/angular/src/http.js",
+		"/C/Users/weerut/Desktop/angular/src/injector.js",
+		"/C/Users/weerut/Desktop/angular/src/compile.js",
+		"/C/Users/weerut/Desktop/angular/test/compile_spec.js",
 		"/C/Users/weerut/Desktop/angular/myangular.sublime-workspace",
 		"/C/Users/weerut/Desktop/angular/src/http_backend.js",
-		"/C/Users/weerut/Desktop/angular/src/http.js",
 		"/C/Users/weerut/Desktop/angular/test/http_spec.js",
 		"/C/Users/weerut/.gitconfig",
 		"/C/Users/weerut/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/N4VVGFPO/ATT62706.npmrc",
 		"/C/Users/weerut/.npmrc",
-		"/C/Users/weerut/Desktop/angular/karma.conf.js",
 		"/C/Users/weerut/Downloads/build-your-own-angularjs-chapter15-http/src/http.js",
 		"/C/Users/weerut/Desktop/angular/src/angular_public.js",
 		"/C/Users/weerut/Desktop/angular/test/http_backend_spec.js",
@@ -436,12 +461,10 @@
 		"/C/ProgramData/Thomson Reuters/Eikon Data/X/ConfigMachine/HACK/HackNotificationCenter_CMS_JetToast_Enabled.xml",
 		"/C/Users/weerut/Desktop/angular/src/hash_map.js",
 		"/C/Users/weerut/Desktop/angular/test/hash_map_spec.js",
-		"/C/Users/weerut/Desktop/angular/src/injector.js",
 		"/C/Users/weerut/Desktop/angular/test/injector_spec.js",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/app/index.html",
 		"/C/Users/weerut/Desktop/angular/src/loader.js",
 		"/C/Users/weerut/Desktop/angular/CONTRIBUTING.md",
-		"/C/Users/weerut/Desktop/angular/src/filter.js",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/app/styles/ektoast.css",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/ektoast.js",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/app/scripts/directives/ektoastpanel.js",
@@ -526,9 +549,7 @@
 		"/C/GIT/eikonnow/dist/EikonNow-1.3.3.js",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/bin/Debug/bower_components/jet-api/dist/JET.js",
 		"/C/Users/weerut/Desktop/New folder/index.html",
-		"/C/GIT/clientmodules/ClientModules/Default.htm",
-		"/C/GIT/notificationcenter/src/NotificationToastUI/include.html",
-		"/D/300 Source/NotificationSender/script.js"
+		"/C/GIT/clientmodules/ClientModules/Default.htm"
 	],
 	"find":
 	{
@@ -556,6 +577,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$controller",
+			"controller$",
 			"linkNode",
 			" $rootScope",
 			"beforeEach",
@@ -681,8 +704,6 @@
 			"$compile",
 			"$complie",
 			"mode",
-			"actionpanel",
-			"\nactionpanel",
 			"actionpanel"
 		],
 		"highlight": true,
@@ -712,19 +733,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/compile.js",
+					"file": "src/controller.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11478,
+						"buffer_size": 1964,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5209,
-								5209
+								1027,
+								1027
 							]
 						],
 						"settings":
@@ -733,10 +754,68 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4224.0,
+						"translation.y": 660.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/injector.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5394,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3783,
+								3783
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 2244.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/compile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19485,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16787,
+								16787
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 10670.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -746,20 +825,20 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
+					"buffer": 3,
 					"file": "test/compile_spec.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 31331,
+						"buffer_size": 60162,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								31230,
-								31217
+								59345,
+								59345
 							]
 						],
 						"settings":
@@ -767,11 +846,11 @@
 							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 20107.0,
+						"translation.x": -0.0,
+						"translation.y": 40281.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -805,7 +884,7 @@
 		"cols":
 		[
 			0.0,
-			0.562585708714,
+			0.484145625367,
 			1.0
 		],
 		"rows":
@@ -841,12 +920,16 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"C:\\GIT\\notificationcenter\\src\\NotificationToastUI\\ToastUI.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
@@ -857,7 +940,7 @@
 		],
 		"width": 593.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
@@ -865,9 +948,10 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 165.0,
+	"side_bar_width": 217.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
+		"max_columns": 2
 	}
 }

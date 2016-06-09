@@ -1761,7 +1761,7 @@ describe('$compile', function() {
 			injector.invoke(function($compile, $rootScope) {
 				var el = $('<div my-directive an-attr="abc"></div>');
 				$compile(el)($rootScope);
-				expect(gotElement[0]).toBe(el[0])
+				expect(gotElement[0]).toBe(el[0]);
 				expect(gotScope).toBe($rootScope);
 				expect(gotAttrs).toBeDefined();
 				expect(gotAttrs.anAttr).toEqual('abc');
