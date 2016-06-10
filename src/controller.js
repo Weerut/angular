@@ -40,35 +40,17 @@ function $ControllerProvider() {
 			}
 			var instance;
 			if (later) {
-				// instance = Object.create(ctrl);
-				// return _.extend(function() {
-				// 	$injector.invoke(ctrl, instance, locals);
-				// 	return instance;
-				// }, {
-				// 	instance: instance
-				// });
-
-				var afunction = function() {
-					console.log("yes a");
+				var ctrlConstructor = _.isArray(ctrl) ? _.last(ctrl) : ctrl;
+				instance = Object.create(ctrlConstructor.prototype);
+				if (identifier) {
+					addToScope(locals, identifier, instance);
 				}
-
-				return afunction;
-
-
-				// var semiInstance = function() {};
-				// semiInstance.instance = {};
-				// semiInstance = function() {
-				// 	var controllerObj = $injector.instantiate(ctrl, locals);
-				// 	if (identifier) {
-				// 		addToScope(locals, identifier, controllerObj);
-				// 	}
-				// 	semiInstance.instance.forEach(function(value, key) {
-				// 		controllerObj[key] = value;
-				// 	});
-
-				// 	return controllerObj;
-				// };
-				// return semiInstance;
+				return _.extend(function() {
+					$injector.invoke(ctrl, instance, locals);
+					return instance;
+				}, {
+					instance: instance
+				});
 			} else {
 				instance = $injector.instantiate(ctrl, locals);
 				if (identifier) {

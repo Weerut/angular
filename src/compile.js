@@ -84,9 +84,10 @@ function $CompileProvider($provide) {
 						if (directive.link && !directive.compile) {
 							directive.compile = _.constant(directive.link);
 						}
-						if (_.isObject(directive.scope)) {
-							directive.$$isolateBindings = parseIsolateBindings(directive.scope);
-						}
+						directive.$$bindings = parseDirectiveBindings(directive); 
+						// if (_.isObject(directive.scope)) {
+						// 	directive.$$isolateBindings = parseIsolateBindings(directive.scope);
+						// }
 						directive.name = directive.name || name;
 						directive.index = i;
 						return directive;
@@ -411,7 +412,8 @@ function $CompileProvider($provide) {
 				var terminalPriority = -Number.MAX_VALUE;
 				var terminal = false;
 				var preLinkFns = [],
-					postLinkFns = [];
+					postLinkFns = [],
+					controllers = {};
 				var newScopeDirective, newIsolateScopeDirective;
 				var controllerDirectives;
 
@@ -501,17 +503,18 @@ function $CompileProvider($provide) {
 
 					// Register controller for each directive in node
 					if (controllerDirectives) {
-						var locals = {
-							$scope: newIsolateScopeDirective ? isolateScope : scope,
-							$element: $element,
-							$attrs: attrs
-						};
 						_.forEach(controllerDirectives, function(directive) {
+							var locals = {
+								$scope: directive === newIsolateScopeDirective ? isolateScope : scope,
+								$element: $element,
+								$attrs: attrs
+							};
 							var controllerName = directive.controller;
 							if (controllerName === '@') {
 								controllerName = attrs[directive.name];
 							}
-							$controller(controllerName, locals, false, directive.controllerAs);
+							controllers[directive.name] =
+								$controller(controllerName, locals, true, directive.controllerAs);
 						});
 					}
 
@@ -576,6 +579,10 @@ function $CompileProvider($provide) {
 							}
 						});
 					}
+
+					_.forEach(controllers, function(controller) {
+						controller();
+					});
 
 					_.forEach(preLinkFns, function(linkFn) {
 						linkFn(linkFn.isolateScope ? isolateScope : scope, $element, attrs);
