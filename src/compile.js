@@ -48,6 +48,8 @@ function isBooleanAttribute(node, attrName) {
 	return BOOLEAN_ATTRS[attrName] && BOOLEAN_ELEMENTS[node.nodeName];
 }
 
+// Parse isolate scope object to format which explicitly contain
+// 'mode', 'colloetion', 'optional' and 'attrName' property.
 function parseIsolateBindings(scope) {
 	var bindings = {};
 	_.forEach(scope, function(definition, scopeName) {
@@ -59,6 +61,18 @@ function parseIsolateBindings(scope) {
 			attrName: match[4] || scopeName
 		};
 	});
+	return bindings;
+}
+
+function parseDirectiveBindings(directive) {
+	var bindings = {};
+	if (_.isObject(directive.scope)) {
+		if (directive.bindToController) {
+			bindings.bindToController = parseIsolateBindings(directive.scope);
+		} else {
+			bindings.isolateScope = parseIsolateBindings(directive.scope);
+		}
+	}
 	return bindings;
 }
 
@@ -84,10 +98,7 @@ function $CompileProvider($provide) {
 						if (directive.link && !directive.compile) {
 							directive.compile = _.constant(directive.link);
 						}
-						directive.$$bindings = parseDirectiveBindings(directive); 
-						// if (_.isObject(directive.scope)) {
-						// 	directive.$$isolateBindings = parseIsolateBindings(directive.scope);
-						// }
+						directive.$$bindings = parseDirectiveBindings(directive);
 						directive.name = directive.name || name;
 						directive.index = i;
 						return directive;
@@ -489,37 +500,9 @@ function $CompileProvider($provide) {
 					}
 				});
 
-				/* Return function. */
-				// This method will run link function for each node.
-				function nodeLinkFn(childLinkFn, scope, linkNode) {
-					var $element = $(linkNode);
 
-					var isolateScope;
-					if (newIsolateScopeDirective) {
-						isolateScope = scope.$new(true);
-						$element.addClass('ng-isolate-scope');
-						$element.data('$isolateScope', isolateScope);
-					}
-
-					// Register controller for each directive in node
-					if (controllerDirectives) {
-						_.forEach(controllerDirectives, function(directive) {
-							var locals = {
-								$scope: directive === newIsolateScopeDirective ? isolateScope : scope,
-								$element: $element,
-								$attrs: attrs
-							};
-							var controllerName = directive.controller;
-							if (controllerName === '@') {
-								controllerName = attrs[directive.name];
-							}
-							controllers[directive.name] =
-								$controller(controllerName, locals, true, directive.controllerAs);
-						});
-					}
-
-					if (newIsolateScopeDirective) {
-						_.forEach(newIsolateScopeDirective.$$isolateBindings, function(definition, scopeName) {
+				function initializeDirectiveBindings(scope, attrs, bindings, isolateScope) {
+					_.forEach(newIsolateScopeDirective.$$isolateBindings, function(definition, scopeName) {
 							var attrName = definition.attrName;
 							switch (definition.mode) {
 								case '@':
@@ -576,8 +559,45 @@ function $CompileProvider($provide) {
 										return parentExpr(scope, locals);
 									};
 									break;
+							});
+					}
+				}
+				/* Return function. */
+				// This method will run link function for each node.
+				function nodeLinkFn(childLinkFn, scope, linkNode) {
+					var $element = $(linkNode);
+
+					var isolateScope;
+					if (newIsolateScopeDirective) {
+						isolateScope = scope.$new(true);
+						$element.addClass('ng-isolate-scope');
+						$element.data('$isolateScope', isolateScope);
+					}
+
+					// Register controller for each directive in node
+					if (controllerDirectives) {
+						_.forEach(controllerDirectives, function(directive) {
+							var locals = {
+								$scope: directive === newIsolateScopeDirective ? isolateScope : scope,
+								$element: $element,
+								$attrs: attrs
+							};
+							var controllerName = directive.controller;
+							if (controllerName === '@') {
+								controllerName = attrs[directive.name];
 							}
+							controllers[directive.name] =
+								$controller(controllerName, locals, true, directive.controllerAs);
 						});
+					}
+
+					if (newIsolateScopeDirective) {
+						initializeDirectiveBindings(
+							scope,
+							attrs,
+							newIsolateScopeDirective.$$bindings.isolateScope,
+							isolateScope
+						);
 					}
 
 					_.forEach(controllers, function(controller) {

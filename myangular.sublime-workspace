@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"bind",
+				"bindings"
+			],
+			[
+				"control",
+				"controllers"
+			],
+			[
+				"proto",
+				"prototype	(injector.js)"
+			],
+			[
+				"ct",
+				"ctrlConstructor"
+			],
+			[
 				"semi",
 				"semiInstance"
 			],
@@ -304,26 +320,10 @@
 	"buffers":
 	[
 		{
-			"file": "src/controller.js",
-			"settings":
-			{
-				"buffer_size": 1964,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/injector.js",
-			"settings":
-			{
-				"buffer_size": 5394,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/compile.js",
 			"settings":
 			{
-				"buffer_size": 19485,
+				"buffer_size": 20257,
 				"line_ending": "Windows"
 			}
 		},
@@ -331,7 +331,7 @@
 			"file": "test/compile_spec.js",
 			"settings":
 			{
-				"buffer_size": 60162,
+				"buffer_size": 61423,
 				"line_ending": "Windows"
 			}
 		}
@@ -422,6 +422,8 @@
 	],
 	"file_history":
 	[
+		"/C/Users/weerut/Desktop/angular/src/controller.js",
+		"/C/Users/weerut/Desktop/angular/test/angular_public_specB.js",
 		"/C/Users/weerut/Desktop/angular/karma.conf.js",
 		"/C/Users/weerut/Desktop/angular/src/filter.js",
 		"/C/Users/weerut/Desktop/angular/src/http.js",
@@ -445,7 +447,6 @@
 		"/C/GIT/notificationcenter/src/NotificationClientModule/bower.json",
 		"/C/GIT/notificationcenter/src/NotificationClientModule/.bowerrc",
 		"/C/GIT/notificationcenter/src/NotificationClientModule/app.json",
-		"/C/Users/weerut/Desktop/angular/test/angular_public_specB.js",
 		"/C/GIT/coreui/app.js",
 		"/C/GIT/clientmodules/ClientModules/app.js",
 		"/C/Users/weerut/Desktop/angular/myangular.sublime-project",
@@ -548,8 +549,7 @@
 		"/C/GIT/notificationcenter/src/NotificationToastUI/bower_components/eikonNow/dist/EikonNow-1.3.3.js",
 		"/C/GIT/eikonnow/dist/EikonNow-1.3.3.js",
 		"/C/GIT/notificationcenter/src/NotificationToastUI/bin/Debug/bower_components/jet-api/dist/JET.js",
-		"/C/Users/weerut/Desktop/New folder/index.html",
-		"/C/GIT/clientmodules/ClientModules/Default.htm"
+		"/C/Users/weerut/Desktop/New folder/index.html"
 	],
 	"find":
 	{
@@ -577,6 +577,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"newIsolateScopeDirective.$$bindings",
+			"nodeLinkFn",
+			"initializeDirectiveBindings",
+			" directive.controller",
+			" var controllerName = directive.controller",
+			"applyDirectivesToNode",
+			"applydirective",
 			"$controller",
 			"controller$",
 			"linkNode",
@@ -697,14 +704,7 @@
 			"remove",
 			"openSharedItem",
 			"execute",
-			"openSharedItem",
-			"openWorkspaceChannel",
-			"cloud",
-			"sendPayload",
-			"$compile",
-			"$complie",
-			"mode",
-			"actionpanel"
+			"openSharedItem"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -733,77 +733,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1964,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1027,
-								1027
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 660.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/injector.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 5394,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3783,
-								3783
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": -0.0,
-						"translation.y": 2244.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "src/compile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19485,
+						"buffer_size": 20257,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16787,
-								16787
+								17015,
+								17015
 							]
 						],
 						"settings":
@@ -812,10 +754,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 10670.0,
+						"translation.y": 10956.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -825,20 +767,20 @@
 			"sheets":
 			[
 				{
-					"buffer": 3,
+					"buffer": 1,
 					"file": "test/compile_spec.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 60162,
+						"buffer_size": 61423,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								59345,
-								59345
+								61415,
+								61415
 							]
 						],
 						"settings":
@@ -846,11 +788,11 @@
 							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
-						"translation.y": 40281.0,
+						"translation.x": 0.0,
+						"translation.y": 40633.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -884,7 +826,7 @@
 		"cols":
 		[
 			0.0,
-			0.484145625367,
+			0.526903050664,
 			1.0
 		],
 		"rows":
@@ -906,7 +848,7 @@
 	"project": "myangular.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 71.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -940,7 +882,7 @@
 		],
 		"width": 593.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -948,7 +890,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 217.0,
+	"side_bar_width": 135.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
