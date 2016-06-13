@@ -360,20 +360,36 @@ function $CompileProvider($provide) {
 				return match;
 			}
 
-			function compileTemplateUrl(directives, $compileNode, attrs) {
+			function compileTemplateUrl(directives, $compileNode, attrs, previousCompileContext) {
 				var origAsyncDirective = directives.shift();
 				var derivedSyncDirective = _.extend({}, origAsyncDirective, {
 					templateUrl: null
 				});
 				var templateUrl = _.isFunction(origAsyncDirective.templateUrl) ?
 					origAsyncDirective.templateUrl($compileNode, attrs) : origAsyncDirective.templateUrl;
+				var afterTemplateNodeLinkFn, afterTemplateChildLinkFn;
+				var linkQueue = [];
 				$compileNode.empty();
 				$http.get(templateUrl).success(function(template) {
 					directives.unshift(derivedSyncDirective);
 					$compileNode.html(template);
-					applyDirectivesToNode(directives, $compileNode, attrs);
-					compileNodes($compileNode[0].childNodes);
+					afterTemplateNodeLinkFn = applyDirectivesToNode(directives, $compileNode, attrs, previousCompileContext);
+					afterTemplateChildLinkFn = compileNodes($compileNode[0].childNodes);
+					_.forEach(linkQueue, function(linkCall) {
+						afterTemplateNodeLinkFn(afterTemplateChildLinkFn, linkCall.scope, linkCall.linkNode);
+					});
+					linkQueue = null;
 				});
+				return function delayedNodeLinkFn(_ignoreChildLinkFn, scope, linkNode) {
+					if (linkQueue) {
+						linkQueue.push({
+							scope: scope,
+							linkNode: linkNode
+						});
+					} else {
+						afterTemplateNodeLinkFn(afterTemplateChildLinkFn, scope, linkNode);
+					}
+				};
 			}
 
 			/*------------------------------------------------------*/
@@ -455,16 +471,18 @@ function $CompileProvider($provide) {
 
 
 
-			function applyDirectivesToNode(directives, compileNode, attrs) {
+			function applyDirectivesToNode(directives, compileNode, attrs, previousCompileContext) {
+				previousCompileContext = previousCompileContext || {};
 				var $compileNode = $(compileNode);
 				var terminalPriority = -Number.MAX_VALUE;
 				var terminal = false;
-				var preLinkFns = [],
-					postLinkFns = [],
-					controllers = {};
-				var newScopeDirective, newIsolateScopeDirective;
-				var templateDirective;
-				var controllerDirectives;
+				var preLinkFns = previousCompileContext.preLinkFns || [];
+				var postLinkFns = previousCompileContext.postLinkFns || [];
+				var controllers = {};
+				var newScopeDirective;
+				var newIsolateScopeDirective = previousCompileContext.newIsolateScopeDirective;
+				var templateDirective = previousCompileContext.templateDirective;
+				var controllerDirectives = previousCompileContext.controllerDirectives;
 
 				function addLinkFns(preLinkFn, postLinkFn, attrStart,
 					attrEnd, isolateScope, require) {
@@ -507,7 +525,7 @@ function $CompileProvider($provide) {
 					if (directive.priority < terminalPriority) {
 						return false;
 					}
-					if (directive.scope) {
+					if (directive.scope && !directive.templateUrl) {
 						if (_.isObject(directive.scope)) {
 							if (newIsolateScopeDirective || newScopeDirective) {
 								throw 'Multiple directives asking for new/inherited scope';
@@ -533,7 +551,18 @@ function $CompileProvider($provide) {
 							directive.template($compileNode, attrs) : directive.template);
 					}
 					if (directive.templateUrl) {
-						compileTemplateUrl(_.drop(directives, i), $compileNode, attrs);
+						if (templateDirective) {
+							throw 'Multiple directives asking for template';
+						}
+						templateDirective = directive;
+						nodeLinkFn = compileTemplateUrl(
+							_.drop(directives, i), $compileNode, attrs, {
+								templateDirective: templateDirective,
+								newIsolateScopeDirective: newIsolateScopeDirective,
+								controllerDirectives: controllerDirectives,
+								preLinkFns: preLinkFns,
+								postLinkFns: postLinkFns
+							});
 						return false;
 					} else if (directive.compile) {
 						var linkFn = directive.compile($compileNode, attrs);
@@ -733,7 +762,9 @@ function $CompileProvider($provide) {
 					});
 					if (childLinkFn) {
 						var scopeToChild = scope;
-						if (newIsolateScopeDirective && newIsolateScopeDirective.template) {
+						if (newIsolateScopeDirective &&
+							(newIsolateScopeDirective.template ||
+								newIsolateScopeDirective.templateUrl === null)) {
 							scopeToChild = isolateScope;
 						}
 						childLinkFn(scopeToChild, linkNode.childNodes);
