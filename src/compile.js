@@ -518,6 +518,7 @@ function $CompileProvider($provide) {
 					};
 				}
 
+
 				_.forEach(directives, function(directive, i) {
 					if (directive.$$start) {
 						$compileNode = groupScan(compileNode, directive.$$start, directive.$$end);
@@ -541,6 +542,11 @@ function $CompileProvider($provide) {
 					if (directive.controller) {
 						controllerDirectives = controllerDirectives || {};
 						controllerDirectives[directive.name] = directive;
+					}
+					if (directive.transclude) {
+						var $transcludedNodes = $compileNode.clone().contents();
+						compile($transcludedNodes);
+						$compileNode.empty();
 					}
 					if (directive.template) {
 						if (templateDirective) {
@@ -583,8 +589,9 @@ function $CompileProvider($provide) {
 
 				});
 
-				/* Return groups of function . */
-
+				/*------------------------------*/
+				/*  Return groups of function . */
+				/*------------------------------*/
 				// This function will do binding.
 				function initializeDirectiveBindings(scope, attrs, destination, bindings, newScope) {
 					_.forEach(bindings, function(definition, scopeName) {
